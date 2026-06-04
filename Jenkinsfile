@@ -17,7 +17,7 @@ pipeline {
 
         stage('Copy Files to Server') {
             steps {
-                sshagent(['remote-server']) {
+                sshagent(['server-k8s']) {
                     sh '''
                     scp -o StrictHostKeyChecking=no -r * $REMOTE_USER@$REMOTE_HOST:/home/$REMOTE_USER/$APP_NAME
                     '''
@@ -27,7 +27,7 @@ pipeline {
 
         stage('Deploy on Remote Server') {
             steps {
-                sshagent(['remote-server']) {
+                sshagent(['server-k8s']) {
                     sh '''
                     ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST << EOF
 
