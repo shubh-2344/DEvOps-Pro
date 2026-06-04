@@ -11,7 +11,7 @@ pipeline {
 
         stage('Clone Code') {
             steps {
-                git 'https://github.com/shubh-2344/DEvOps-Pro.git'
+                git branch: 'main', url: 'https://github.com/shubh-2344/DEvOps-Pro.git'
             }
         }
 
