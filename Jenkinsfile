@@ -12,14 +12,14 @@ pipeline {
         stage('Clone Code') {
             steps {
                 git branch: 'main',
-                    credentialsId: 'c5dbf1a4-f7db-4d11-91a0-7e9cc4404ec8',
+                    credentialsId: '5177aa01-e626-4c28-952c-2bb65eac630e',
                     url: 'https://github.com/shubh-2344/DEvOps-Pro.git'
             }
         }
 
         stage('Copy Files to Server') {
             steps {
-                sshagent(credentials: ['c5dbf1a4-f7db-4d11-91a0-7e9cc4404ec8']) {
+                sshagent(credentials: ['5177aa01-e626-4c28-952c-2bb65eac630e']) {
                     sh '''
                     ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST \
                     "mkdir -p /home/$REMOTE_USER/$APP_NAME"
@@ -33,7 +33,7 @@ pipeline {
 
         stage('Deploy on Remote Server') {
             steps {
-                sshagent(credentials: ['c5dbf1a4-f7db-4d11-91a0-7e9cc4404ec8']) {
+                sshagent(credentials: ['5177aa01-e626-4c28-952c-2bb65eac630e']) {
                     sh '''
                     ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST << EOF
                     set -e
